@@ -1,0 +1,49 @@
+{% extends 'base_plataforma.html' %}
+{% load static %}
+
+<!-- Bloco plataforma -->
+{% block 'plataforma' %}
+ <!-- Mensagens -->
+{% if messages %}
+  <br>
+  {% for message in messages %}
+    <div class="alert {{message.tags}}">
+      {{message}}
+    </div>
+  {% endfor %}
+{% endif %}
+  <br>
+  <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal">
+    Novo paciente
+  </button>
+  
+    <br>
+    <br>
+    <!-- Card paciente-->
+    <div  class="row">
+      {% for paciente in pacientes %}
+        <div class="col-md-4">
+          <a href="{% url 'dados_paciente' paciente.id %}" class="link-hover">
+              <div class="card-paciente">
+                  <div class="foto-perfil">
+                    {% if paciente.sexo='M' %}
+                      <img src="{% static 'plataforma/img/perfil2.png' %}">
+                    {% else %}
+                      <img src="{% static 'plataforma/img/perfil1.png' %}">
+                    {% endif %}
+                    </div>
+                  <br>
+                  <p class="dados">{{paciente.nome}}</p>
+                  <p class="dados">{{paciente.data_nascimento}}</p>
+              </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  <!-- Modal paciente-->
+  {% include 'modals/cadastrar_paciente_modal.html' %}
+
+{% endblock 'plataforma' %}
+
+
+
