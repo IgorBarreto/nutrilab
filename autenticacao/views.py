@@ -88,7 +88,7 @@ def logar(request: HttpRequest):
             )
             return redirect('/auth/logar')
         auth.login(request, usuario)
-        return redirect('/')
+        return redirect('/pacientes')
     # TODO: ERRO DE 500
     return HttpResponse('ERRO MÉTODO INVÁLIDA')
 
